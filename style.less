@@ -7,6 +7,9 @@ header{
 	// .pagePadding;
 	h1, h2, h3, h4, h5, h6{ color: @white; }
 }
+.bg-gradient{
+	background: svg-gradient(to bottom right, spin(@accent, 14%), spin(@accent, -40%)) no-repeat;
+}
 
 main{
 	section{
@@ -19,14 +22,24 @@ main{
 	.grid{
 		@mason-gutter: (@baseline * 1.25);
 		margin-right: -@mason-gutter;
+		@media @phone{ margin-right: 0; }
 		li{
 			&.grid-sizer{ width: 100% / 4; }
-			border-radius: 3px;
 			width: ~'calc((100% / 4) - @{mason-gutter})';
-			// max-height: @x3baseline * 7;
+			@media @tablet{
+				&.grid-sizer{ width: 100% / 2; }
+				width: ~'calc((100% / 2) - @{mason-gutter})';
+			}
+			@media @phone{
+				&.grid-sizer{ width: 100%; }
+				width: 100%;
+				max-height: @x3baseline * 3;
+			}
 			margin-bottom: @mason-gutter;
+			max-height: 90vh;
 			overflow: hidden;
 			position: relative;
+			border-radius: 3px;
 			.shadow(@accent, 1.75, .6);
 			a, img{ boder-radius: 3px; }
 			&:after{
@@ -36,6 +49,7 @@ main{
 				position: absolute;
 				top: 0; left: 0;
 				border-radius: 3px;
+				pointer-events: none;
 				box-shadow: inset 0 0 0 1px fade(@black, 10%);
 			}
 		}
@@ -43,6 +57,14 @@ main{
 			li{
 				&.grid-sizer{ width: 100% / 5; }
 				width: ~'calc((100% / 5) - @{mason-gutter})';
+				@media @tablet{
+					&.grid-sizer{ width: 100% / 3; }
+					width: ~'calc((100% / 3) - @{mason-gutter})';
+				}
+				@media @phone{
+					&.grid-sizer{ width: 100%; }
+					width: 100%;
+				}
 			}
 		}
 	}
